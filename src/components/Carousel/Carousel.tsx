@@ -65,6 +65,7 @@ export const Carousel = ({ children, auto = false }: CarouselProps) => {
       <div className={styles.indicators}>
         {childArray.map((_: any, index: number) => (
           <div
+            onClick={() => setCurrentIndex(index)}
             key={index}
             className={`${styles.indicator} ${
               index === currentIndex ? styles.active : ''
