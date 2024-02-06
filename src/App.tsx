@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <div style={{ width: '80%', margin: 'auto' }}>
-        <Carousel>
+        <Carousel auto>
           <CarouselSlide url={stars}></CarouselSlide>
           <CarouselSlide url={swim}></CarouselSlide>
           <CarouselSlide url={dive}></CarouselSlide>

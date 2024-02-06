@@ -1,8 +1,12 @@
-import { ReactElement, ReactNode, useState } from 'react';
+import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import styles from './Carousel.module.scss';
 import React from 'react';
 
-export const Carousel = ({ children }: { children: ReactNode }) => {
+interface CarouselProps {
+  children: ReactNode;
+  auto?: boolean;
+}
+export const Carousel = ({ children, auto = false }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const childArray = React.Children.toArray(children) as ReactElement[];
@@ -16,6 +20,17 @@ export const Carousel = ({ children }: { children: ReactNode }) => {
     }
     setCurrentIndex(newIndex);
   };
+
+  useEffect(() => {
+    if (!auto) {
+      return;
+    }
+    const interval = setInterval(() => {
+      handleNavigation('right');
+    }, 2000);
+
+    return () => clearInterval(interval);
+  });
 
   const slidesWithDuplicate = [...childArray, childArray[0]];
 
